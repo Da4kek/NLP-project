@@ -14,7 +14,7 @@ clf = pickle.load(open(os.path.join(cur_dir,"pkl_objects","classifier.pkl"),"rb"
 db = os.path.join(cur_dir,"reviews.sqlite")
 
 def classifiy(document):
-    label = {1:"Extremely Negative",2:"Negative",3:"Neutral",4:"Positive",5:"Extremely positive"}
+    label ={1:"ExtremelyNegative",2:"Negative",3:"Neutral",4:"Positive",5:"Extremelypositive"}
     X = vect.transform([document])
     y = clf.predict(X)[0]
     proba = np.max(clf.predict_proba(X))
@@ -59,7 +59,7 @@ def feedback():
     feedback = request.form['feedback_button']
     review = request.form['review']
     prediction = request.form['prediction']
-    inv_label = {"Extremely Negative":1,"Negative":2,"Neutral":3,"Positive":4,"Extremely positive":5}
+    inv_label={"ExtremelyNegative":1,"Negative":2,"Neutral":3,"Positive":4,"Extremelypositive":5}
     y = inv_label[prediction]
     if feedback=="Incorrect":
         y =int(not(y))
